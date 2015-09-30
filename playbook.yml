@@ -160,47 +160,47 @@
 
     ### DOTFILES
 
-    - name: Check rcm is installed
-      stat: path=/usr/local/bin/rcup
-      register: rcm_installed
+    # - name: Check rcm is installed
+    #   stat: path=/usr/local/bin/rcup
+    #   register: rcm_installed
 
-    - name: Install rcm for dotfiles management
-      shell: brew tap thoughtbot/formulae && brew install rcm
-      when: rcm_installed.stat.exists == false
+    # - name: Install rcm for dotfiles management
+    #   shell: brew tap thoughtbot/formulae && brew install rcm
+    #   when: rcm_installed.stat.exists == false
 
-    - name: Check ~/src dir exists
-      stat: path=~/src/
-      register: src_dir_exists
+    # - name: Check ~/src dir exists
+    #   stat: path=~/src/
+    #   register: src_dir_exists
 
-    - name: Assures ~/src dir exists
-      file: path=~/src state=directory
+    # - name: Assures ~/src dir exists
+    #   file: path=~/src state=directory
 
-    - name: Assures ~/src/thoughtbot dir exists
-      file: path=~/src/thoughtbot state=directory
+    # - name: Assures ~/src/thoughtbot dir exists
+    #   file: path=~/src/thoughtbot state=directory
 
-    - name: Install thoughtbot/dotfiles
-      git: repo=https://github.com/thoughtbot/dotfiles.git dest=~/src/thoughtbot/dotfiles
+    # - name: Install thoughtbot/dotfiles
+    #   git: repo=https://github.com/thoughtbot/dotfiles.git dest=~/src/thoughtbot/dotfiles
 
-    - name: Link ~/dotfiles to ~/src/thoughtbot/dotfiles
-      file: dest=~/dotfiles 
-            src=~/src/thoughtbot/dotfiles
-            state=link
-            force=yes
+    # - name: Link ~/dotfiles to ~/src/thoughtbot/dotfiles
+    #   file: dest=~/dotfiles 
+    #         src=~/src/thoughtbot/dotfiles
+    #         state=link
+    #         force=yes
 
-    - name: Assures ~/src/{{ dotfile_repo_username }} dir exists
-      file: path=~/src/{{ dotfile_repo_username }} state=directory
+    # - name: Assures ~/src/{{ dotfile_repo_username }} dir exists
+    #   file: path=~/src/{{ dotfile_repo_username }} state=directory
 
-    - name: Install {{ dotfile_repo_username }}/dotfiles
-      git: repo=https://github.com/{{ dotfile_repo_username }}/dotfiles.git dest=~/src/{{ dotfile_repo_username }}/dotfiles
+    # - name: Install {{ dotfile_repo_username }}/dotfiles
+    #   git: repo=https://github.com/{{ dotfile_repo_username }}/dotfiles.git dest=~/src/{{ dotfile_repo_username }}/dotfiles
 
-    - name: Link ~/dotfiles-local to ~/src/{{ dotfile_repo_username }}/dotfiles
-      file: dest=~/dotfiles-local
-            src=~/src/{{ dotfile_repo_username }}/dotfiles
-            state=link
-            force=yes
+    # - name: Link ~/dotfiles-local to ~/src/{{ dotfile_repo_username }}/dotfiles
+    #   file: dest=~/dotfiles-local
+    #         src=~/src/{{ dotfile_repo_username }}/dotfiles
+    #         state=link
+    #         force=yes
 
-    - name: Generate dotfiles with rcup
-      shell: env RCRC=~/dotfiles/rcrc rcup
+    # - name: Generate dotfiles with rcup
+    #   shell: env RCRC=~/dotfiles/rcrc rcup
 
 
     ## POST INSTALL STEPS / Cask gotchas
