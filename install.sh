@@ -63,7 +63,7 @@ if [ -d "./laptop" ]; then
   rm -rf ./laptop/
 fi
 fancy_echo "Cloning laptop repo ..."
-git clone https://github.com/siyelo/laptop.git 
+git clone https://github.com/jessmartin/laptop.git 
 
 fancy_echo "Changing to laptop repo dir ..."
 cd laptop
