@@ -2,16 +2,16 @@
 
 Laptop is a playbook to set up an OS X laptop (for web development).
 
-It installs and configures most of the software Siyelo uses on our Macs for web and software development. 
+It installs and configures most of the software I use on my Mac for web and software development. 
 
 It can be run multiple times on the same machine safely. It installs, upgrades, or skips packages based on what is already installed on the machine.
 
 
 ## Requirements
 
-We've tested it on;
+Tested on:
 
-* OS X Yosemite (~10.10.4)
+* OS X El Capitan (~10.11.0)
 
 
 ## Installation
@@ -20,7 +20,7 @@ We've tested it on;
 
 If you'd like to start with my default list of tools and apps (see Included Apps/Config below), then simply install with;
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/siyelo/laptop/master/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/jessmartin/laptop/master/install.sh)"
 
 
 You can always customize the install after-the-fact (see below), and re-run the playbook. It will skip over any installed apps.
@@ -61,98 +61,78 @@ As above, download and bootstrap the script. But stop it before it starts ansibl
 You can do this as many times as you like and re-run the `ansible-playbook` command. Ansible is smart enough to skip installed apps, so subsequent runs are super fast.
 
 
-## Included Applications / Configuration
+## What This Script Does
 
-### Applications
+### Installs Applications
 
 Apps installed with Homebrew Cask:
 
-  - 1password
-  - alfred # | http://www.alfredapp.com 
-  - apptrap # remove associated prefs when uninstalling
-  - appzapper # uninstaller
-  - bettertouchtool # window snapping. (maybe Moom is more lightweight?)
-  - carbon-copy-cloner # backups | https://bombich.com/download
-  - cheatsheet # know your shortcuts
-  - cyberduck # ftp, s3, openstack
-  - dash # totally sick API browser
-  - diffmerge # free visual diq
-  - disk-inventory-x # reclaim space on your expensive-ass Apple SSD | http://www.derlien.com/
-  - dropbox # a worse Mega Sync
-  - firefox 
-  - flux # get more sleep
-  - google-chrome
-  - imageoptim # optimize images
-  - istumbler # network discovery GUI
-  - jumpcut # awesome clipboard
-  - karabiner # Keyboard customization
-  - licecap # GIFs !
-  - little-snitch # awesome outbound firewall
-  - megasync # a better Dropbox  
-  - monolingual # remove unneeded osx lang files
-  - nvalt # fast note taking
-  - qlcolorcode # quick look syntax highlighting
-  - qlimagesize # quick look image dimensions
-  - qlmarkdown # quick look .md files
-  - qlstephen # quick look extension-less text files
-  - rowanj-gitx # Awesome gitx fork.
-  - sequel-pro # FREE SQL GUI!
-  - shortcat # kill your mouse
-  - shuttle # ssh management
-  - skype # 
-  - sublime-text3 # (experimental cask) | http://www.sublimetext.com/
-  - thunderbird # email
-  - tomighty # pomodoro
-  - torbrowser # be the noise
-  - transmission # torrents
-  - tunnelblick # VPN
-  - vagrant # | https://www.vagrantup.com/downloads.html
-  - vagrant-manager # 
-  - virtualbox # | https://www.virtualbox.org/
-  - vlc 
-
-There are several more common cask apps listed in the playbook.yml - simply uncomment them to include them in your install. 
+- 1password
+- adium 
+- alfred # | http://www.alfredapp.com 
+- caffeine # prevent mac from sleeping 
+- cheatsheet # know your shortcuts
+- cyberduck # ftp, s3, openstack
+- dropbox # a worse Mega Sync
+- eve # learn your shortcuts
+- firefox 
+- flux # get more sleep
+- fluid
+- github
+- google-chrome
+- google-drive 
+- google-hangouts
+- handbrake # vid compression 
+- iterm2 
+- licecap # GIFs !
+- macvim # a shittier vim 
+- monolingual # remove unneeded osx lang files
+- nvalt # fast note taking
+- qlcolorcode # quick look syntax highlighting
+- qlimagesize # quick look image dimensions
+- qlmarkdown # quick look .md files
+- qlstephen # quick look extension-less text files
+- rdio
+- scroll-reverser
+- shortcat # kill your mouse
+- sizeup
+- skitch 
+- skype # 
+- smcfancontrol
+- sublime-text3 # (experimental cask) | http://www.sublimetext.com/
+- truecrypt
+- ubersicht
+- vagrant # | https://www.vagrantup.com/downloads.html
+- virtualbox # | https://www.virtualbox.org/
+- vlc 
+- vmware-fusion
 
 
 ### Packages/Utilities 
  
 Things installed with Homebrew:
 
-  - autoconf
-  - autojump # quickly navigate from cmd line
-  - bash # Bash 4
-  - boot2docker # for running docker on osx
-  - brew-cask
-  - coreutils # Install GNU core utilities (those that come with OS X are outdated)
-  - cowsay # amazing
-  - docker # | https://docs.docker.com/installation/mac/
-  - findutils  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-  - git
-  - go
-  - gpg
-  - hub # github
-  - keybase # in alpha at time of writing.
-  - mtr # better traceroute
-  - node
-  - npm
-  - openssl
-  - packer
-  - postgresql # yes and nosql
-  - python
-  - rbenv # ruby. Just installs binaries - assumes you bring in the dotfiles.
-  - readline
-  - redis
-  - rename # rename multiple files
-  - rsync
-  - ruby-build
-  - sqlite # production rails DB
-  - the_silver_searcher # fast ack-grep
-  - tmux
-  - vim
-  - wget
-  - zsh
-
-There are several more utils listed in the playbook.yml - simply uncomment them to include them in your install. 
+- ack
+- autoconf
+- boot2docker # for running docker on osx
+- brew-cask
+- cowsay # amazing
+- coreutils
+- docker
+- findutils
+- hub
+- mongodb
+- mysql
+- neo4j
+- openssl
+- phantomjs 
+- postgresql
+- readline
+- redis
+- rsync
+- tmux
+- vim
+- wget
 
 
 ### System Settings
@@ -173,7 +153,7 @@ so you need read it very carefully first. (see scripts/system_settings.sh)
 TODO: moar sick settings with https://github.com/ryanmaclean/OSX-Post-Install-Script
 
 
-### User Preferences
+### Sets up dotfiles
 
 It then syncs your user prefs with dotfiles+rcm
 
@@ -183,22 +163,29 @@ It then grabs [glennr/dotfiles](https://github.com/glennr/dotfiles) repo, saves 
 
 You probably want to change the `dotfile_repo_username` variable to match your github username :-)
 
-It then runs rcup to initialize your dotfiles.
+It then runs `rcup` to initialize your dotfiles.
 
 
 
-### MacStore Apps (WIP)
+### MANUAL: Installs Apps from App Store
 
 These apps only available via the App Store. (sigh)
 
 TODO: Port bork : https://github.com/mattly/bork/blob/master/types/macstore.sh and do this automagically!
 
-  - Monosnap
-  - Pages
-  - Keynote
-  - Numbers
-  - etc
-
+- Clocks
+- Keynote
+- iMovie
+- Kindle
+- Microsoft Remote Desktop
+- Twitter
+- Slack
+- Pocket
+- Wunderlist
+- Simplenote
+- Pomodoro One
+- Pages
+- Numbers
 
 
 ### Application Settings (WIP)
@@ -207,18 +194,23 @@ Keep your application settings in sync.
 
 TODO: Add Mackup task
 
+### MANUAL: Install Google Chrome Extensions
+
+- StayFocused
+- Hangouts
+- Greenhouse
+- Pocket
+- Kimono
+- Github Selfies
+- Rapportive
+
+TODO: Write script to open all Chrome extension URLs in separate tabs to speed installation.
 
 ### Other 
 
 - install fonts like a boss : http://lapwinglabs.com/blog/hacker-guide-to-setting-up-your-mac
 
 - TODO: Install [Sublime Package Manager](http://sublime.wbond.net/installation).
-- ZSH tab/auto completion
-- Powerline in tmux
-- zsh-autosuggestions plugin
-- zsh-history-substring-search plugin
-- zsh-notify plugin
-
 
 
 ## Development
@@ -231,7 +223,7 @@ Instead, you can follow theses instructions for [how to build a Mac OS X Virtual
 
 We've tested it using an OSX 10.10 Vagrant/Virtualbox VM for developing & testing the Ansible scripts.
 
-Simply spin up the Yosemite box in a VM, and have vagrant kick off the laptop setup.
+Simply spin up the El Capitan box in a VM, and have vagrant kick off the laptop setup.
 
 ### Whats included?
 
@@ -283,8 +275,8 @@ The Vagrant box we use is a [clean-ish install of OSX](https://github.com/timsut
 
 ## Author
 
-[Glenn Roberts](http://glenn-roberts.com), 2015. 
-
+* Original author: [Glenn Roberts](http://glenn-roberts.com), 2015. 
+* This fork: [Jess Martin](http://jessmart.in)
 
 ## Credits
 
