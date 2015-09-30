@@ -38,7 +38,7 @@
       - skype # 
       - smcfancontrol
       - sublime-text3 # (experimental cask) | http://www.sublimetext.com/
-      - truecrypt
+      # - truecrypt
       - ubersicht
       - vagrant # | https://www.vagrantup.com/downloads.html
       - virtualbox # | https://www.virtualbox.org/
