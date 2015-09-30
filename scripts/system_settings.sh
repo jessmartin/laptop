@@ -2,11 +2,6 @@
 #
 # Source: https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716 
 
-# TODO: Move to ansible tasks (for bonus internet points).
-
-# Ask for the administrator password upfront
-# sudo -v #assumes ansible -ask-sudo-pass already
-
 fancy_echo() {
   local fmt="$1"; shift
 
@@ -24,12 +19,12 @@ fancy_echo "Hide the Time Machine, Volume, User, and Bluetooth icons"
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
   defaults write "${domain}" dontAutoLoad -array \
     "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-    "/System/Library/CoreServices/Menu Extras/Volume.menu" \
     "/System/Library/CoreServices/Menu Extras/User.menu"
 done
 defaults write com.apple.systemuiserver menuExtras -array \
   "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
   "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+  "/System/Library/CoreServices/Menu Extras/Volume.menu" \
   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
   "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
@@ -65,11 +60,6 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 fancy_echo "Displaying ASCII control characters using caret notation in standard text views"
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
-# I like my terminal resume too much...
-#echo ""
-#echo "Disabling system-wide resume"
-#defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
-
 fancy_echo "Disabling automatic termination of inactive apps"
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 
@@ -78,10 +68,6 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 fancy_echo "Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window"
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-
-# echo ""
-# echo "Never go into computer sleep mode"
-# systemsetup -setcomputersleep Off > /dev/null
 
 fancy_echo "Check for software updates daily, not just once per week"
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
@@ -136,8 +122,8 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 # Finder
 ###############################################################################
 
-fancy_echo "Showing icons for hard drives, servers, and removable media on the desktop"
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+# fancy_echo "Showing icons for hard drives, servers, and removable media on the desktop"
+# defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 
 fancy_echo "Showing all filename extensions in Finder by default"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -145,17 +131,20 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 fancy_echo "Showing status bar in Finder by default"
 defaults write com.apple.finder ShowStatusBar -bool true
 
+fancy_echo "Show Path bar in Finder"
+defaults write com.apple.finder ShowPathbar -bool true
+
 fancy_echo "Allowing text selection in Quick Look/Preview in Finder by default"
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
 fancy_echo "Displaying full POSIX path as Finder window title"
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
+fancy_echo "Use current directory as default search scope in Finder"
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
 fancy_echo "Disabling the warning when changing a file extension"
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-
-fancy_echo "Use column view in all Finder windows by default"
-defaults write com.apple.finder FXPreferredViewStyle Clmv
 
 fancy_echo "Avoiding the creation of .DS_Store files on network volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
@@ -170,7 +159,6 @@ fancy_echo "Enabling snap-to-grid for icons on the desktop and in other icon vie
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
 
-
 fancy_echo "Disable disk image verification"
 defaults write com.apple.frameworks.diskimages skip-verify -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
@@ -181,10 +169,8 @@ defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
-fancy_echo "Use list view in all Finder windows by default"
-# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
-defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
-
+fancy_echo "Use column view in all Finder windows by default"
+defaults write com.apple.finder FXPreferredViewStyle Clmv
 
 fancy_echo "Disable the warning before emptying the Trash"
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
@@ -220,23 +206,15 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 fancy_echo "Show indicator lights for open applications in the Dock"
 defaults write com.apple.dock show-process-indicators -bool true
 
-fancy_echo "Wipe all (default) app icons from the Dock"
-# This is only really useful when setting up a new Mac, or if you don't use
-# the Dock to launch apps.
-defaults write com.apple.dock persistent-apps -array
-
 fancy_echo "Don't animate opening applications from the Dock"
 defaults write com.apple.dock launchanim -bool false
 
 fancy_echo "Make Dock icons of hidden applications translucent"
 defaults write com.apple.dock showhidden -bool true
 
-fancy_echo "Speed up Mission Control animations"
-defaults write com.apple.dock expose-animation-duration -float 0.1
-
-fancy_echo "Don't group windows by application in Mission Control"
-fancy_echo "(i.e. use the old Expose behavior instead)"
-defaults write com.apple.dock expose-group-by-app -bool false
+# fancy_echo "Don't group windows by application in Mission Control"
+# fancy_echo "(i.e. use the old Expose behavior instead)"
+# defaults write com.apple.dock expose-group-by-app -bool false
 
 fancy_echo "Disable Dashboard"
 defaults write com.apple.dashboard mcx-disabled -bool true
@@ -246,7 +224,6 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 
 fancy_echo "Don't automatically rearrange Spaces based on most recent use"
 defaults write com.apple.dock mru-spaces -bool false
-
 
 
 
@@ -296,7 +273,7 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 # Terminal
 ###############################################################################
 
-fancy_echo "Enabling UTF-8 ONLY in Terminal.app and setting the Pro theme by default"
+fancy_echo "Enabling UTF-8 ONLY in Terminal.app"
 defaults write com.apple.terminal StringEncodings -array 4
 
 # echo ""
@@ -318,9 +295,6 @@ hash tmutil &> /dev/null && sudo tmutil disablelocal
 ###############################################################################
 # Messages                                                                    #
 ###############################################################################
-
-fancy_echo "Disable automatic emoji substitution (i.e. use plain text smileys)"
-defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
 
 fancy_echo "Disable smart quotes as it's annoying for messages that contain code"
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
@@ -381,10 +355,8 @@ fancy_echo "Use the system-native print preview dialog in Chrome"
 defaults write com.google.Chrome DisablePrintPreview -bool true
 defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 
-
 fancy_echo "Disable the sound effects on boot"
 sudo nvram SystemAudioVolume=" "
-
 
 
 ###############################################################################
