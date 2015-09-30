@@ -68,7 +68,7 @@
       - mysql
       - neo4j
       - openssl
-      - phantomjs 
+      # - phantomjs 
       - postgresql
       - readline
       - redis
