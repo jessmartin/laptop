@@ -30,6 +30,7 @@
       - qlmarkdown # quick look .md files
       - qlstephen # quick look extension-less text files
       - rdio
+      - screenhero
       - scroll-reverser
       - shortcat # kill your mouse
       - sizeup
