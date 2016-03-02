@@ -33,8 +33,7 @@ As above, download and bootstrap the script. But stop it before it starts ansibl
 
 1. Grab and start the bootstrap script. Let it install the prereqs and clone the full `siyelo/laptop` repo locally...
 
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/siyelo/laptop/master/install.sh)"
-
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/jessmartin/laptop/master/install.sh)"
 
 1. Stop the script (Ctrl+C) when ansible asks for the a 'sudo' password. 
 
