@@ -5,45 +5,46 @@
 
     applications:
       - 1password
-      - adium 
+      # - adium 
       - alfred # | http://www.alfredapp.com 
       - caffeine # prevent mac from sleeping 
       - cheatsheet # know your shortcuts
-      - cyberduck # ftp, s3, openstack
+      # - cyberduck # ftp, s3, openstack
       - dropbox # a worse Mega Sync
       - eve # learn your shortcuts
-      - firefox 
+      # - firefox 
       - flux # get more sleep
       - fluid
       - github-desktop
       - google-chrome
       - google-drive 
       - google-hangouts
-      - handbrake # vid compression 
-      - iterm2 
-      - licecap # GIFs !
-      - macvim # a shittier vim 
+      # - handbrake # vid compression 
+      # - iterm2 
+      # - licecap # GIFs !
+      # - macvim # a shittier vim 
       - monolingual # remove unneeded osx lang files
-      - nvalt # fast note taking
+      # - nvalt # fast note taking
       - qlcolorcode # quick look syntax highlighting
       - qlimagesize # quick look image dimensions
       - qlmarkdown # quick look .md files
       - qlstephen # quick look extension-less text files
-      - rdio
+      # - rdio
       - screenhero
-      - scroll-reverser
-      - shortcat # kill your mouse
+      # - scroll-reverser
+      # - shortcat # kill your mouse
       - sizeup
       - skitch 
-      - skype # 
+      - skype
+      - slack
       - smcfancontrol
       - sublime-text3 # (experimental cask) | http://www.sublimetext.com/
       # - truecrypt
-      - ubersicht
-      - vagrant # | https://www.vagrantup.com/downloads.html
-      - virtualbox # | https://www.virtualbox.org/
-      - vlc 
-      - vmware-fusion
+      # - ubersicht
+      # - vagrant # | https://www.vagrantup.com/downloads.html
+      # - virtualbox # | https://www.virtualbox.org/
+      # - vlc 
+      # - vmware-fusion
 
     brew_taps:
       - caskroom/cask
@@ -52,30 +53,30 @@
       - homebrew/dupes # gnu grep
       - homebrew/versions 
 
-    dotfile_repo_username: jessmartin # the GH repo where your dotfiles are
+    # dotfile_repo_username: jessmartin # the GH repo where your dotfiles are
 
     brew_utils:
-      - ack
-      - autoconf
-      - boot2docker # for running docker on osx
-      - brew-cask
-      - cowsay # amazing
-      - coreutils
-      - docker
-      - findutils
-      - hub
-      - mongodb
-      - mysql
-      - neo4j
-      - openssl
+      # - ack
+      # - autoconf
+      # - boot2docker # for running docker on osx
+      # - brew-cask
+      # - cowsay # amazing
+      # - coreutils
+      # - docker
+      # - findutils
+      # - hub
+      # - mongodb
+      # - mysql
+      # - neo4j
+      # - openssl
       # - phantomjs 
-      - postgresql
-      - readline
-      - redis
-      - rsync
-      - tmux
-      - vim
-      - wget
+      # - postgresql
+      # - readline
+      # - redis
+      # - rsync
+      # - tmux
+      # - vim
+      # - wget
 
     home: "{{ lookup('env','HOME') }}"
 
