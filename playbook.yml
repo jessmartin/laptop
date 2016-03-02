@@ -155,9 +155,9 @@
     ### OSX SETTINGS
 
     # Consider swapping in https://github.com/mathiasbynens/dotfiles/blob/master/.osx instead
-    - name: Configure System Settings
-      script: scripts/system_settings.sh
-      sudo: true
+    # - name: Configure System Settings
+    #   script: scripts/system_settings.sh
+    #   sudo: true
 
 
     ### DOTFILES
